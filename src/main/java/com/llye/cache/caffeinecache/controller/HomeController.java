@@ -5,6 +5,8 @@ import org.springframework.cache.CacheManager;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.llye.cache.caffeinecache.config.CacheConfig.CACHE_CUSTOMERS_CACHE;
+
 @RestController
 public class HomeController {
 
@@ -16,7 +18,7 @@ public class HomeController {
 
     @GetMapping("/cache/stats")
     public Object getCacheStats() {
-        Cache<Object, Object> cache = (Cache<Object, Object>) cacheManager.getCache("employeesCache").getNativeCache();
+        Cache<Object, Object> cache = (Cache<Object, Object>) cacheManager.getCache(CACHE_CUSTOMERS_CACHE).getNativeCache();
         return cache.asMap();
     }
 }

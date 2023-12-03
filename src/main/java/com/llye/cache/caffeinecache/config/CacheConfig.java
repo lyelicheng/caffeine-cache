@@ -13,9 +13,11 @@ import java.time.Duration;
 @EnableCaching
 public class CacheConfig {
 
+    public static final String CACHE_CUSTOMERS_CACHE = "customersCache";
+
     @Bean
     public CacheManager cacheManager() {
-        CaffeineCacheManager cacheManager = new CaffeineCacheManager("customersCache");
+        CaffeineCacheManager cacheManager = new CaffeineCacheManager(CACHE_CUSTOMERS_CACHE);
         cacheManager.setCaffeine(caffeineCacheBuilder());
         return cacheManager;
     }

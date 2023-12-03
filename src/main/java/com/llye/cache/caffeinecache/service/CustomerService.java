@@ -16,6 +16,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import static com.llye.cache.caffeinecache.config.CacheConfig.CACHE_CUSTOMERS_CACHE;
+
 @Service
 public class CustomerService {
 
@@ -35,7 +37,7 @@ public class CustomerService {
         return Optional.of(CustomerDto.toDto(customer));
     }
 
-    @Cacheable("customersCache")
+    @Cacheable(CACHE_CUSTOMERS_CACHE)
     public List<CustomerDto> findAll(int pageNumber, int pageSize) {
         LOG.info("Customers are fetched from DB.");
         PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "updatedAt"));
