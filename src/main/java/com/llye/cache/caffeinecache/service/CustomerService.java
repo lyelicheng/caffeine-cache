@@ -37,7 +37,7 @@ public class CustomerService {
         return Optional.of(CustomerDto.toDto(customer));
     }
 
-    @Cacheable(CACHE_CUSTOMERS_CACHE)
+    @Cacheable(value = CACHE_CUSTOMERS_CACHE, unless = "#result == null or #result.size() == 0")
     public List<CustomerDto> findAll(int pageNumber, int pageSize) {
         LOG.info("Customers are fetched from DB.");
         PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "updatedAt"));
